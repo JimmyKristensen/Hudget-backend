@@ -1,10 +1,7 @@
 package com.example.backend.DailyBudget.Model;
 
 import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
-import lombok.Generated;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
