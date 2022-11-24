@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
+//hans 2411 2022
 @Getter
 @Setter
 @Entity
@@ -16,11 +18,12 @@ public class DailyBudget {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long dailyBudget_Id;
 
-    private long dailyBudgetMoney;
+    private long money;
+
+    private Date day;
 
     @ManyToOne
     @JoinColumn(name = "monthly_Id", nullable=false)
     private MonthlyBudget monthlyBudget;
-
 
 }

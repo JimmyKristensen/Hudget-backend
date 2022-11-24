@@ -22,10 +22,8 @@ public class MonthlyBudget {
     private double monthlyMoney;
     private Date date;
 
-    @OneToMany(mappedBy = "monthlybudget")
+    @OneToMany
     private Set<DailyBudget> dailyBudgets;
-
-
 
     public MonthlyBudget(double monthlyMoney, Date date) {
         this.monthlyMoney = monthlyMoney;
