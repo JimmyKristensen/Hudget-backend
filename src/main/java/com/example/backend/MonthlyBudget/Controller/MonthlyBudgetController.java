@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("api/v1/monthlyBudget")
+@RequestMapping("api/v1/monthlybudget")
 public class MonthlyBudgetController {
 
     private final MonthlybudgetService service;

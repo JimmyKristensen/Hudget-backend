@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
+
 
 @NoArgsConstructor
 @Getter
@@ -20,16 +22,16 @@ public class MonthlyBudget {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long monthly_Id;
     private double monthlyMoney;
-    private Date date;
+    private LocalDate date;
 
+    //We call one monthlyBudget to many DailyBudget
     @OneToMany
     private Set<DailyBudget> dailyBudgets;
 
-    public MonthlyBudget(double monthlyMoney, Date date) {
+
+    public MonthlyBudget(double monthlyMoney, LocalDate date, Set<DailyBudget> dailyBudgets) {
         this.monthlyMoney = monthlyMoney;
         this.date = date;
-
+        this.dailyBudgets = dailyBudgets;
     }
-
-
 }
