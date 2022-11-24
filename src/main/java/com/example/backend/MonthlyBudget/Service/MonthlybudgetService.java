@@ -1,4 +1,4 @@
 package com.example.backend.MonthlyBudget.Service;
 
-public class monthlybudgetService {
+public class MonthlybudgetService {
 }
