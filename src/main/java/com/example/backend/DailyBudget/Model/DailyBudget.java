@@ -3,6 +3,7 @@ package com.example.backend.DailyBudget.Model;
 import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import lombok.Generated;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 public class DailyBudget {
 
     @Id
