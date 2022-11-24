@@ -19,7 +19,7 @@ public class DailyBudget {
     private long dailyBudgetMoney;
 
     @ManyToOne
-    @JoinColumn(name = "monthlyBudgetId", nullable=false)
+    @JoinColumn(name = "monthly_Id", nullable=false)
     private MonthlyBudget monthlyBudget;
 
 

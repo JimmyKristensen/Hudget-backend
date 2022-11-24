@@ -1,4 +1,7 @@
 package com.example.backend.MonthlyBudget.Repository;
 
-public class MonthlyBudgetRepository {
+import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
+import org.springframework.data.repository.CrudRepository;
+
+public interface MonthlyBudgetRepository extends CrudRepository<MonthlyBudget, Long> {
 }
