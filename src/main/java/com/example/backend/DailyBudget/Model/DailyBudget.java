@@ -18,7 +18,7 @@ public class DailyBudget {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long dailyBudget_Id;
 
-    private long money;
+    private float dailyMoney;
 
     private Date day;
 

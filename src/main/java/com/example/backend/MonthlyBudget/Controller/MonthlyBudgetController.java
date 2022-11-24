@@ -25,5 +25,6 @@ public class MonthlyBudgetController {
                 .orElseThrow(() -> new RuntimeException("Monthly Budget not found".formatted(id))));
         return ResponseEntity.ok().body(monthlyBudget.get());
     }
+    
 
 }
