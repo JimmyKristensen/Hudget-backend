@@ -35,7 +35,12 @@ public class MonthlyBudgetController {
     public ResponseEntity<MonthlyBudget> patch(@PathVariable("id") Long id,
                                                @RequestBody MonthlyBudget monthlyBudget){
         return ResponseEntity.ok().body(service.update(id, monthlyBudget));
-
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<MonthlyBudget> delete(@PathVariable("id") Long id) {
+        service.find(id).orElseThrow(() -> new RuntimeException("Monthly Budget not found for deletion".formatted(id)));
+        MonthlyBudget monthlyBudget = service.delete(id);
+        return ResponseEntity.ok().body(monthlyBudget);
     }
 
 }
