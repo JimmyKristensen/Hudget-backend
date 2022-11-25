@@ -20,14 +20,28 @@ public class DailyBudget {
 
     private float money;
 
-    private LocalDate day;
+   // private LocalDate day;
+//
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "monthly_Id", nullable=false)
+//    private MonthlyBudget monthlyBudget;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "monthly_Id", nullable=false)
+//    private MonthlyBudget monthlyBudget;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "monthly_Id", nullable=false)
-    private MonthlyBudget monthlyBudget;
+//    public DailyBudget(float money, //udkommenteret denne for at tjekke om den kan fungere hvis ikke vi giver den et
+    //monthly budget
+//                       //LocalDate day, //jeg udkommenterer Day fordi det måske er det?
+//                       MonthlyBudget monthlyBudget) {
+//        this.money = money;
+//      //  this.day = day;
+//        this.monthlyBudget = monthlyBudget; //jeg har tilfjet montlybudget til konstruktøren for at se om det klan køre
 
-    public DailyBudget(float money, LocalDate day) {
+       public DailyBudget(float money){
         this.money = money;
-        this.day = day;
+      //  this.day = day;
+      //  this.monthlyBudget = monthlyBudget; //jeg har tilfjet montlybudget til konstruktøren for at se om det klan køre
     }
+
 }

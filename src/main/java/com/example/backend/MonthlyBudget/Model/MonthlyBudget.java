@@ -1,6 +1,5 @@
 package com.example.backend.MonthlyBudget.Model;
 
-
 import com.example.backend.DailyBudget.Model.DailyBudget;
 import lombok.Generated;
 import lombok.Getter;
@@ -11,7 +10,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
-
 
 @NoArgsConstructor
 @Getter
@@ -29,9 +27,17 @@ public class MonthlyBudget {
     private Set<DailyBudget> dailyBudgets;
 
 
-    public MonthlyBudget(double monthlyMoney, LocalDate date, Set<DailyBudget> dailyBudgets) {
+//    public MonthlyBudget(double monthlyMoney, LocalDate date, Set<DailyBudget> dailyBudgets) {
+//        this.monthlyMoney = monthlyMoney;
+//        this.date = date;
+//        this.dailyBudgets = dailyBudgets;
+//    } //2311 2022 udkomm. for at teste om Date fucker med SQL --- det gør det!
+
+    public MonthlyBudget(double monthlyMoney, Set<DailyBudget> dailyBudgets
+                         //LocalDate date
+                         ) {
         this.monthlyMoney = monthlyMoney;
-        this.date = date;
+      //  this.date = date;
         this.dailyBudgets = dailyBudgets;
     }
 }
