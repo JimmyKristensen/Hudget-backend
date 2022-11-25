@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Locale;
 
 //hans 2411 2022
 @Getter
@@ -20,7 +21,9 @@ public class DailyBudget {
 
     private float money;
 
-   // private LocalDate day;
+
+    private LocalDate date;
+   // zprivate LocalDate day;
 //
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "monthly_Id", nullable=false)
@@ -38,8 +41,9 @@ public class DailyBudget {
 //      //  this.day = day;
 //        this.monthlyBudget = monthlyBudget; //jeg har tilfjet montlybudget til konstruktøren for at se om det klan køre
 
-       public DailyBudget(float money){
+       public DailyBudget(float money, LocalDate date){
         this.money = money;
+        this.date = date;
       //  this.day = day;
       //  this.monthlyBudget = monthlyBudget; //jeg har tilfjet montlybudget til konstruktøren for at se om det klan køre
     }

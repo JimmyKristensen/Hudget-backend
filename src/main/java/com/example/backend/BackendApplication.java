@@ -6,17 +6,16 @@ import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import com.example.backend.MonthlyBudget.Repository.MonthlyBudgetRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import java.sql.Date;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @SpringBootApplication
 public class BackendApplication {
+
 
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);
@@ -33,11 +32,18 @@ public class BackendApplication {
 
         LocalDate now = LocalDate.now(); //tilføjet denne så vi kan give Budget-construc "now" istedet for "LocalDate.now()";
 
-        //  for (DailyBudget dbud : dailyBudgets ) {      //hans: en metode der laver List<dailyB> om til et set
-          //     dailySet.add(dbud);         //jeg har kommenteret denne ud (igen) fordi ... dailybudget skal have et monltybudget som
-                             //et af sine konstruktør argumenter, men montylbudget skal OGSÅ have et dailybudget set
 
-          // }          //jeg har laet denne for at kunne give MonthlyBudget-konstruktøren nedenunder i cmd-line runneren et Set
+        final List<DailyBudget> dailybudgets = new ArrayList<>();
+        //dailybudgets.add(new DailyBudget(200, date.getTime()));
+        dailybudgets.add(new DailyBudget(2, LocalDate.now()));
+        //dailybudgets.add(new DailyBudget(150, date.getTime()));
+
+        dailyBudget.saveAll(dailybudgets);
+        for (DailyBudget bd : dailybudgets) {
+
+            dailySet.add(bd);
+
+        }
 
         final List<MonthlyBudget> monthlyBudgets = new ArrayList<>();
         monthlyBudgets.add(new MonthlyBudget(20000, dailySet));
