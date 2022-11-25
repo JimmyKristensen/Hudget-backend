@@ -6,7 +6,7 @@ import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import com.example.backend.MonthlyBudget.Repository.MonthlyBudgetRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import java.sql.Date;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
@@ -34,24 +34,18 @@ public class BackendApplication {
 
 
         final List<DailyBudget> dailybudgets = new ArrayList<>();
-        //dailybudgets.add(new DailyBudget(200, date.getTime()));
-        dailybudgets.add(new DailyBudget(2, LocalDate.now()));
-        //dailybudgets.add(new DailyBudget(150, date.getTime()));
 
+        dailybudgets.add(new DailyBudget(266, LocalDate.now()));
+        dailybudgets.add(new DailyBudget(223, now));        //LocalDate.now() og now gør det samme. now er kortere. : )
         dailyBudget.saveAll(dailybudgets);
+
         for (DailyBudget bd : dailybudgets) {
-
             dailySet.add(bd);
-
         }
 
         final List<MonthlyBudget> monthlyBudgets = new ArrayList<>();
-        monthlyBudgets.add(new MonthlyBudget(20000, dailySet));
+        monthlyBudgets.add(new MonthlyBudget(20000, dailySet, now));
         monthlyBudget.saveAll(monthlyBudgets);
-
-//        final List<DailyBudget> dailyBudgets = new ArrayList<>();
-//        dailyBudgets.add(new DailyBudget(2000));
-//        dailyBudget.saveAll(dailyBudgets); //1402 har kommenteret dette for at se om det kan køre
 
     };}
 

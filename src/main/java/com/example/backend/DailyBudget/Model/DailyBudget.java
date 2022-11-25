@@ -21,7 +21,6 @@ public class DailyBudget {
 
     private float money;
 
-
     private LocalDate date;
    // zprivate LocalDate day;
 //
