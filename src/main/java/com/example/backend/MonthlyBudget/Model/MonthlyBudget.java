@@ -19,8 +19,8 @@ public class MonthlyBudget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long monthly_Id;
-    private double monthlyMoney;
     private LocalDate date;
+    private double monthlyMoney;
 
     //We call one monthlyBudget to many DailyBudget
     @OneToMany
