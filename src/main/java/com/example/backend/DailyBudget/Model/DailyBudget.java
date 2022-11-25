@@ -20,8 +20,8 @@ public class DailyBudget {
     private long dailyBudget_Id;
 
     private float money;
-
     private LocalDate date;
+
    // zprivate LocalDate day;
 //
 //    @ManyToOne(fetch = FetchType.EAGER)
