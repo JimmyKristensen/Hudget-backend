@@ -25,6 +25,17 @@ public class MonthlyBudgetController {
                 .orElseThrow(() -> new RuntimeException("Monthly Budget not found".formatted(id))));
         return ResponseEntity.ok().body(monthlyBudget.get());
     }
-    
+    @PostMapping()
+    public ResponseEntity<MonthlyBudget> create(@RequestBody MonthlyBudget monthlyBudget) {
+        MonthlyBudget budgetItem = service.create(monthlyBudget);
+        return ResponseEntity.ok().body(budgetItem);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<MonthlyBudget> patch(@PathVariable("id") Long id,
+                                               @RequestBody MonthlyBudget monthlyBudget){
+        return ResponseEntity.ok().body(service.update(id, monthlyBudget));
+
+    }
 
 }

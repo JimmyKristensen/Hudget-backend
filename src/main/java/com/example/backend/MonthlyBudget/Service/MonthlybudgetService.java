@@ -19,4 +19,10 @@ public class MonthlybudgetService {
     public Optional<MonthlyBudget> find(Long id){
         return repository.findById(id);
     }
+
+    public MonthlyBudget create(MonthlyBudget monthlyBudget) {
+        return repository.save(monthlyBudget);
+    }
+    public MonthlyBudget update(Long id, MonthlyBudget monthlyBudget) { return repository.save(monthlyBudget);}
+
 }
