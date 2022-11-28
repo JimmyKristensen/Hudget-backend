@@ -25,4 +25,9 @@ public class MonthlybudgetService {
     }
     public MonthlyBudget update(Long id, MonthlyBudget monthlyBudget) { return repository.save(monthlyBudget);}
 
+    public MonthlyBudget delete(long id){
+        repository.deleteById(id);
+        return null;
+    }
+
 }
