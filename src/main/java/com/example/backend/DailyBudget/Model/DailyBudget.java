@@ -18,9 +18,7 @@ public class DailyBudget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long dailyBudget_Id;
-
     private float money;
-
     private LocalDate date;
 
 //    @ManyToOne(fetch = FetchType.EAGER)
@@ -35,6 +33,14 @@ public class DailyBudget {
         this.money = money;
         this.date = date;
 
+    }
+
+    @Override //2811 2022 hans: givet dailybudget en tostring for debugging
+    public String toString(){
+           return "This is dailyBudget object toString. STATUS: \n" +
+                   "ID: " + this.dailyBudget_Id +
+                   ", AND money: " + this.money +
+                   ". \nEnd of status.";
     }
 
 }
