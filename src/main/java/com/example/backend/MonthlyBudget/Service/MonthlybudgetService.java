@@ -8,6 +8,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -27,12 +31,22 @@ public class MonthlybudgetService {
     }
 
     public MonthlyBudget create(MonthlyBudget monthlyBudget) {
+
+        List<DailyBudget> listDaily =  dailyService.create();
+        Set<DailyBudget> target = new HashSet<>(listDaily);
+        monthlyBudget = new MonthlyBudget(monthlyBudget.getMonthlyMoney(), target, LocalDate.now());
+
         return repository.save(monthlyBudget);
     }
     public Optional<MonthlyBudget> update(Long id, MonthlyBudget monthlyBudget) {
         return repository.findById(id)
                 .map(oldItem -> repository.save(oldItem.updateWith(monthlyBudget)));
     }
+
+
+
+
+    public MonthlyBudget update(Long id, MonthlyBudget monthlyBudget) { return repository.save(monthlyBudget);}
 
     public MonthlyBudget delete(long id){
         repository.deleteById(id);

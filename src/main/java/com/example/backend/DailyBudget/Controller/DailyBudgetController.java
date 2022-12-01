@@ -5,6 +5,7 @@ import com.example.backend.DailyBudget.Service.DailyBudgetService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -31,8 +32,8 @@ public class DailyBudgetController {
     }
 
     @PostMapping
-    public ResponseEntity<DailyBudget> create(@RequestBody DailyBudget dailyBudget) {
-        DailyBudget item = service.create(dailyBudget);
+    public ResponseEntity<List<DailyBudget>> create(@RequestBody DailyBudget dailyBudget) {
+        List<DailyBudget> item = service.create();
         return ResponseEntity.ok().body(item);
     }
 
@@ -45,5 +46,7 @@ public class DailyBudgetController {
     public ResponseEntity<DailyBudget> patch(@PathVariable("id") Long id, @RequestBody DailyBudget dailyBudget) {
         return ResponseEntity.ok().body(service.update(id, dailyBudget));
     }
+
+
 
 }

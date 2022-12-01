@@ -17,6 +17,9 @@ public class MonthlyBudgetController {
         this.service = service;
     }
 
+    public MonthlyBudgetController(MonthlybudgetService service){
+        this.service = service;}
+
     @GetMapping
     public Iterable<MonthlyBudget> callApi() {
         return service.findAll();
@@ -28,7 +31,6 @@ public class MonthlyBudgetController {
                 .orElseThrow(() -> new RuntimeException("Monthly Budget not found".formatted(id))));
         return ResponseEntity.ok().body(monthlyBudget.get());
     }
-
     @PostMapping()
     public ResponseEntity<MonthlyBudget> create(@RequestBody MonthlyBudget monthlyBudget) {
         service.createNewDailyBudgets(monthlyBudget.getDailyBudgets());
@@ -41,7 +43,6 @@ public class MonthlyBudgetController {
         service.createNewDailyBudgets(monthlyBudget.getDailyBudgets());
         return ResponseEntity.ok().body(service.update(id, monthlyBudget));
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<MonthlyBudget> delete(@PathVariable("id") Long id) {
         service.find(id).orElseThrow(() -> new RuntimeException("Monthly Budget not found for deletion".formatted(id)));

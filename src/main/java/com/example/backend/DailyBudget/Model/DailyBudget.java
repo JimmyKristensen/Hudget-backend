@@ -1,8 +1,13 @@
 package com.example.backend.DailyBudget.Model;
 
+import com.example.backend.AdditionalExpenses.Model.AdditionalExpenses;
+import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,17 +21,13 @@ public class DailyBudget {
     private float money;
     private LocalDate date;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "monthly_Id", nullable=false)
-//    private MonthlyBudget monthlyBudget;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "monthly_Id", nullable=false)
-//    private MonthlyBudget monthlyBudget;
+    @OneToMany
+    private Set<AdditionalExpenses> additionalExpenses;
 
-       public DailyBudget(float money, LocalDate date){
+       public DailyBudget(float money, LocalDate date, Set<AdditionalExpenses> additionalExpenses){
         this.money = money;
         this.date = date;
+        this.additionalExpenses = additionalExpenses;
 
     }
 
