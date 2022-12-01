@@ -61,8 +61,7 @@ public class BackendApplication {
         users.add(new User("Timmie","jegErSuperSej"));
         users.add(new User("Hans","kodeord13"));
         login.saveAll(users);
-
-
+        System.out.println("CommandLineRunner has completed setup -- Hudget ready to run.");
 
     };}
 
