@@ -1,14 +1,9 @@
 package com.example.backend.DailyBudget.Model;
 
-import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import lombok.*;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Locale;
 
-//hans 2411 2022
 @Getter
 @Setter
 @NoArgsConstructor
@@ -37,10 +32,10 @@ public class DailyBudget {
 
     @Override //2811 2022 hans: givet dailybudget en tostring for debugging
     public String toString(){
-           return "This is dailyBudget object toString. STATUS: \n" +
+           return "This is dailyBudget object toString. STATUS: " +
                    "ID: " + this.dailyBudget_Id +
                    ", AND money: " + this.money +
-                   ". \nEnd of status.";
+                   ". \nEnd of status of DailyBudget object. \n";
     }
 
 }
