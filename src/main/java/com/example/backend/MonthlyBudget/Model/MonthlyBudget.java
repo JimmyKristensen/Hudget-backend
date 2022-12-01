@@ -30,13 +30,21 @@ public class MonthlyBudget {
         this.dailyBudgets = dailyBudgets;
     }
 
+    public MonthlyBudget updateWith(MonthlyBudget MonthlyBudget) {
+        this.monthlyMoney = MonthlyBudget.monthlyMoney;
+        this.date = MonthlyBudget.date;
+        this.dailyBudgets = MonthlyBudget.dailyBudgets;
+        return this;
+    }
+
+
     @Override //2811 2022 tilføjet toString override for at debugge
     public String toString(){
-        return "This is MonthlyBudget toString. Status: \n" +
-                "ID: " + this.monthly_Id
-                +", AND date: " + this.date
-                +", \nAND money: " + this.monthlyMoney
-                +", AND set: " + this.dailyBudgets
-                +". \nEnd of this object.";
+        return "\nThis is MonthlyBudget toString. Status: \n" +
+                "MonthlyBudget ID: " + this.monthly_Id
+                +", AND Monthly date: " + this.date
+                +", AND Monthly money: " + this.monthlyMoney
+                +", \nAND set of Daily Budgets: " + this.dailyBudgets
+                +". \nEnd of this Monthly object. \n";
     }
 }
