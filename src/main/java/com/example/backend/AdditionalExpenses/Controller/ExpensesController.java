@@ -43,4 +43,12 @@ public class ExpensesController {
     public ResponseEntity<AdditionalExpenses> patch(@PathVariable("id") Long id, @RequestBody AdditionalExpenses additionalExpenses) {
         return ResponseEntity.ok().body(service.update(id, additionalExpenses));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<AdditionalExpenses> delete(@PathVariable("id") Long id) {
+        service.find(id).orElseThrow(() -> new RuntimeException("Reservation not found.".formatted(id)));
+
+        AdditionalExpenses delete = service.delete(id);
+        return ResponseEntity.ok().body(delete);
+    }
 }

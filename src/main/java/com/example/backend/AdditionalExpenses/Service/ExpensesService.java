@@ -27,4 +27,5 @@ public class ExpensesService {
 
     public AdditionalExpenses update(Long id, AdditionalExpenses additionalExpenses){return repository.save(additionalExpenses);
     }
+    public AdditionalExpenses delete(long id){repository.deleteById(id); return null;}
 }
