@@ -16,10 +16,9 @@ import java.util.Optional;
 public class MonthlyBudgetController {
 
     private final MonthlybudgetService service;
-    private final DailyBudgetService dailyService;
 
-    public MonthlyBudgetController(MonthlybudgetService service, DailyBudgetService dailyService){
-        this.dailyService = dailyService;
+
+    public MonthlyBudgetController(MonthlybudgetService service){
         this.service = service;}
 
     @GetMapping
@@ -33,17 +32,12 @@ public class MonthlyBudgetController {
     }
     @PostMapping()
     public ResponseEntity<MonthlyBudget> create(@RequestBody MonthlyBudget monthlyBudget) {
-        Iterator newIte = monthlyBudget.getDailyBudgets().iterator();
-        while(newIte.hasNext()) dailyService.create((DailyBudget) newIte.next());
         MonthlyBudget budgetItem = service.create(monthlyBudget);
         return ResponseEntity.ok().body(budgetItem);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MonthlyBudget> put(@PathVariable("id") Long id,
-                                               @RequestBody MonthlyBudget monthlyBudget){
-        Iterator newIte = monthlyBudget.getDailyBudgets().iterator();
-        while(newIte.hasNext()) dailyService.create((DailyBudget) newIte.next());
+    public ResponseEntity<MonthlyBudget> put(@PathVariable("id") Long id, @RequestBody MonthlyBudget monthlyBudget){
         return ResponseEntity.ok().body(service.update(id, monthlyBudget));
     }
     @DeleteMapping("/{id}")
@@ -53,17 +47,5 @@ public class MonthlyBudgetController {
         return ResponseEntity.ok().body(monthlyBudget);
     }
 
-//    @PatchMapping("/{id}")
-//    public ResponseEntity<MonthlyBudget> patch(@PathVariable("id") Long id,
-//                                               @RequestBody MonthlyBudget monthlyBudget) {
-//            Optional<MonthlyBudget> extantMonthlyBudget = Optional.of(service.find(id)
-//                .orElseThrow(() -> new RuntimeException("Monthly Budget not found for Patch.".formatted(id))));
-//            extantMonthlyBudget.get(monthlyMoney);
-            //2811 2022 jeg vil hente budgettet og se på hvad for værdier det har
-            //            if (extantMonthlyBudget.isPresent()) {
-//                MonthlyBudget newBudg = new MonthlyBudget();
-//                newBudg = extantMonthlyBudget;
-//            }
-//    }
 
 }

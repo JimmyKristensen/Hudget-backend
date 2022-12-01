@@ -5,10 +5,13 @@ import com.example.backend.DailyBudget.Model.DailyBudget;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ExpensesService {
+
 
     //class field
     private final CrudRepository<AdditionalExpenses, Long> repository;
@@ -16,6 +19,13 @@ public class ExpensesService {
     //constructor
     public ExpensesService(CrudRepository<AdditionalExpenses, Long> repository) {this.repository = repository; }
 
+    //Pls change static away if you find a easier way to call this to DailyServiceCreate
+    public static Set<AdditionalExpenses> returnDailySet(){
+    Set<AdditionalExpenses> expenses = new HashSet<>();
+    return expenses;
+    }
+
+    //CRUD
     public Iterable<AdditionalExpenses> findAll(){return repository.findAll();}
 
     public Optional<AdditionalExpenses> find(Long id){

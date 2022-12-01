@@ -8,6 +8,7 @@ import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import com.example.backend.MonthlyBudget.Repository.MonthlyBudgetRepository;
 import com.example.backend.User.Model.User;
 import com.example.backend.User.Repository.UserRepository;
+import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 
@@ -15,6 +16,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 
 @SpringBootApplication
@@ -38,6 +41,7 @@ public class BackendApplication {
         Set<DailyBudget> dailySet = new HashSet<DailyBudget>();
         Set<DailyBudget> dailySetEmpty = new HashSet<DailyBudget>();
         Set<AdditionalExpenses> additionalExpensesSet = new HashSet<>();
+        LocalDate localDate = LocalDate.now();
 
 
         LocalDate now = LocalDate.now(); //tilføjet denne så vi kan give Budget-construc "now" istedet for "LocalDate.now()";
@@ -55,16 +59,13 @@ public class BackendApplication {
         dailybudgets.add(new DailyBudget(223, now,additionalExpensesSet));
         dailybudgets.add(new DailyBudget(245, now,additionalExpensesSet));
 
-
-        dailybudgets.add(new DailyBudget(273, now,additionalExpensesSet));
-        dailybudgets.add(new DailyBudget(212, now,additionalExpensesSet));
         dailyBudget.saveAll(dailybudgets);
         for (DailyBudget bd : dailybudgets) {
             dailySet.add(bd);
         }
 
         final List<MonthlyBudget> monthlyBudgets = new ArrayList<>();
-        monthlyBudgets.add(new MonthlyBudget(20000, dailySet,now ));
+        monthlyBudgets.add(new MonthlyBudget(20000, dailySet,localDate.plusDays(1)));
         monthlyBudgets.add(new MonthlyBudget(12000,dailySetEmpty,now));
         monthlyBudgets.add(new MonthlyBudget(20000, dailySetEmpty, now));
         monthlyBudget.saveAll(monthlyBudgets);
@@ -73,6 +74,7 @@ public class BackendApplication {
         users.add(new User("Timmie","jegErSuperSej"));
         users.add(new User("Hans","kodeord13"));
         login.saveAll(users);
+
 
     };}
 
