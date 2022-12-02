@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @CrossOrigin
 @RestController
@@ -32,8 +33,8 @@ public class DailyBudgetController {
     }
 
     @PostMapping
-    public ResponseEntity<List<DailyBudget>> create(@RequestBody DailyBudget dailyBudget) {
-        List<DailyBudget> item = service.create();
+    public ResponseEntity<Set<DailyBudget>> create(@RequestBody DailyBudget dailyBudget) {
+        Set<DailyBudget> item = service.create();
         return ResponseEntity.ok().body(item);
     }
 
