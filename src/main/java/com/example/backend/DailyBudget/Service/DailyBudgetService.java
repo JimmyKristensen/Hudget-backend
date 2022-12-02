@@ -51,8 +51,6 @@ public class DailyBudgetService {
         //Days left in the month
         Integer daysBetween = daysEnd-daysStart;
 
-
-
         //Make enteties depending on how many days
         for (int i = 0; i < daysBetween+1; i++) {
             DailyBudget newDailyBudget = new DailyBudget(0, today, ExpensesService.returnDailySet());
