@@ -19,8 +19,8 @@ public class ExpensesService {
     //constructor
     public ExpensesService(CrudRepository<AdditionalExpenses, Long> repository) {this.repository = repository; }
 
-    //Pls change static away if you find a easier way to call this to DailyServiceCreate
-    public static Set<AdditionalExpenses> returnDailySet(){
+
+    public Set<AdditionalExpenses> returnDailySet(){
     Set<AdditionalExpenses> expenses = new HashSet<>();
     return expenses;
     }
