@@ -38,24 +38,16 @@ public class MonthlybudgetService {
 
         return repository.save(monthlyBudget);
     }
-    public Optional<MonthlyBudget> update(Long id, MonthlyBudget monthlyBudget) {
-        return repository.findById(id)
-                .map(oldItem -> repository.save(oldItem.updateWith(monthlyBudget)));
+    public MonthlyBudget update(Long id, MonthlyBudget monthlyBudget) {
+        return repository.save(monthlyBudget);
     }
 
-
-
-
-    public MonthlyBudget update(Long id, MonthlyBudget monthlyBudget) { return repository.save(monthlyBudget);}
 
     public MonthlyBudget delete(long id){
         repository.deleteById(id);
         return null;
     }
-    public void createNewDailyBudgets(Set<DailyBudget> dailyBudgets) {
-        Iterator newIte = dailyBudgets.iterator();
-        while(newIte.hasNext()) dailyService.create((DailyBudget) newIte.next());
-    }
+
 
 
 }

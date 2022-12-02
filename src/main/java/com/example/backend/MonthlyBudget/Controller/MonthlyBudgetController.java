@@ -1,5 +1,6 @@
 package com.example.backend.MonthlyBudget.Controller;
 
+import com.example.backend.AdditionalExpenses.Model.AdditionalExpenses;
 import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import com.example.backend.MonthlyBudget.Service.MonthlybudgetService;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,6 @@ public class MonthlyBudgetController {
         this.service = service;
     }
 
-    public MonthlyBudgetController(MonthlybudgetService service){
-        this.service = service;}
 
     @GetMapping
     public Iterable<MonthlyBudget> callApi() {
@@ -33,14 +32,20 @@ public class MonthlyBudgetController {
     }
     @PostMapping()
     public ResponseEntity<MonthlyBudget> create(@RequestBody MonthlyBudget monthlyBudget) {
-        service.createNewDailyBudgets(monthlyBudget.getDailyBudgets());
+        /*service.createNewDailyBudgets(monthlyBudget.getDailyBudgets());
+        service.create(monthlyBudget);
+
+         */
         service.create(monthlyBudget);
         return ResponseEntity.ok().body(monthlyBudget);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Optional<MonthlyBudget>> put(@PathVariable("id") Long id, @RequestBody MonthlyBudget monthlyBudget) {
-        service.createNewDailyBudgets(monthlyBudget.getDailyBudgets());
+    public ResponseEntity<MonthlyBudget> put(@PathVariable("id") Long id, @RequestBody MonthlyBudget monthlyBudget) {
+        return ResponseEntity.ok().body(service.update(id, monthlyBudget));
+    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<MonthlyBudget> patch(@PathVariable("id") Long id, @RequestBody MonthlyBudget monthlyBudget) {
         return ResponseEntity.ok().body(service.update(id, monthlyBudget));
     }
     @DeleteMapping("/{id}")
@@ -50,22 +55,5 @@ public class MonthlyBudgetController {
         return ResponseEntity.ok().body(monthlyBudget);
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<MonthlyBudget> patch(@PathVariable("id") Long id, @RequestBody MonthlyBudget newMonthlyBudget) {
-        try {
-            service.createNewDailyBudgets(newMonthlyBudget.getDailyBudgets());
-        }
-        catch (Exception e){
-            System.out.println("No daily budget present ---  skipping step in patchmapping in monthly controller.");
-        }
-        return ResponseEntity.ok().body(update(id, newMonthlyBudget));
-    }
 
-    private MonthlyBudget update(Long id, MonthlyBudget monthlyBudget) {
-        Optional<MonthlyBudget> item = service.update(id, monthlyBudget);
-        if (!item.isPresent()) {
-            System.out.println("monthly not found in MonthlyBudgetController: update().");
-        }
-        return item.get();
-    }
 }

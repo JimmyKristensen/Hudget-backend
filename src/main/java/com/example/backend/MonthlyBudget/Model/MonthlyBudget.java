@@ -30,12 +30,15 @@ public class MonthlyBudget {
         this.dailyBudgets = dailyBudgets;
     }
 
+/*
     public MonthlyBudget updateWith(MonthlyBudget MonthlyBudget) {
         this.monthlyMoney = MonthlyBudget.monthlyMoney;
         this.date = MonthlyBudget.date;
         this.dailyBudgets = MonthlyBudget.dailyBudgets;
         return this;
     }
+
+ */
 
 
     @Override //2811 2022 tilføjet toString override for at debugge
