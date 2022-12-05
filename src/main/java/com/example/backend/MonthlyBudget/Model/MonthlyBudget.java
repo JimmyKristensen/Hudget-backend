@@ -24,22 +24,11 @@ public class MonthlyBudget {
     @OneToMany
     private Set<DailyBudget> dailyBudgets;
 
-    public MonthlyBudget(double monthlyMoney, Set<DailyBudget> dailyBudgets, String date) {
+    //this constructor is deprecated -- dailybdugets are automaticlaly constructed now
+    public MonthlyBudget(double monthlyMoney, String date) {
         this.monthlyMoney = monthlyMoney;
         this.date = date;
-        this.dailyBudgets = dailyBudgets;
     }
-
-/*
-    public MonthlyBudget updateWith(MonthlyBudget MonthlyBudget) {
-        this.monthlyMoney = MonthlyBudget.monthlyMoney;
-        this.date = MonthlyBudget.date;
-        this.dailyBudgets = MonthlyBudget.dailyBudgets;
-        return this;
-    }
-
- */
-
 
     @Override //2811 2022 tilføjet toString override for at debugge
     public String toString(){
@@ -50,4 +39,8 @@ public class MonthlyBudget {
                 +", \nAND set of Daily Budgets: " + this.dailyBudgets
                 +". \nEnd of this Monthly object. \n";
     }
+    public boolean isDateNull(){ //bruges til at se om et MonthlyBudget-obj har fået en Date med, eller ej
+        return this.date == null;
+    }
+
 }
