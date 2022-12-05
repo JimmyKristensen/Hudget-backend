@@ -7,11 +7,8 @@ import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -31,20 +28,36 @@ public class MonthlybudgetService {
     }
 
     public MonthlyBudget create(MonthlyBudget monthlyBudget) {
-        Set<DailyBudget> listDaily =  dailyService.create(monthlyBudget);
+        if (monthlyBudget.isDateNull()) {
+            LocalDate current = LocalDate.now();
+            String getYear = Integer.toString(current.getYear()) + "-" + Integer.toString(current.getMonthValue());
+            monthlyBudget.setDate(getYear);
+        }
+         Set<DailyBudget> listDaily;
+        if (monthlyBudget.isDateNull()) listDaily = dailyService.create(monthlyBudget);
+        else  listDaily = dailyService.createWithDatesFromMonthly(monthlyBudget);
         Set<DailyBudget> target = new HashSet<>(listDaily);
         monthlyBudget.setDailyBudgets(target);
-
-        LocalDate current = LocalDate.now();
-        String getYear = Integer.toString(current.getYear())+"/"+Integer.toString(current.getMonthValue());
-        monthlyBudget.setDate(getYear);
-
         return repository.save(monthlyBudget);
     }
     public MonthlyBudget update(Long id, MonthlyBudget monthlyBudget) {
         return repository.save(monthlyBudget);
     }
 
+
+    public MonthlyBudget updateForMoney(Long id, MonthlyBudget monthlyBudget) {
+        MonthlyBudget monBuActual;
+        if(repository.existsById(id)){ //tjek om MontlhyBudget eksisterer
+          Optional<MonthlyBudget> monBuOld = repository.findById(id); //finder  den
+          monBuActual = monBuOld.get(); //ændreer den fra optional til rigtig.
+        } else {
+            System.out.println("Month not found in DB, sout from updateForMoney in MonthlyBudgetService. \n" +
+                    "Returning unmodified monthlybudget. Monthlybudget ID: " + id);
+            return  monthlyBudget;
+        }
+        monBuActual.setMonthlyMoney(monthlyBudget.getMonthlyMoney());
+        return repository.save(monBuActual);
+        }
 
     public MonthlyBudget delete(long id){
         repository.deleteById(id);
