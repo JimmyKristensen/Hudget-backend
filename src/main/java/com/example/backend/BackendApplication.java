@@ -23,6 +23,7 @@ import java.util.*;
 @SpringBootApplication
 public class BackendApplication {
 
+    Date date;
 
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);
@@ -64,11 +65,6 @@ public class BackendApplication {
             dailySet.add(bd);
         }
 
-        final List<MonthlyBudget> monthlyBudgets = new ArrayList<>();
-        monthlyBudgets.add(new MonthlyBudget(20000, dailySet,localDate.plusDays(1)));
-        monthlyBudgets.add(new MonthlyBudget(12000,dailySetEmpty,now));
-        monthlyBudgets.add(new MonthlyBudget(20000, dailySetEmpty, now));
-        monthlyBudget.saveAll(monthlyBudgets);
 
         final List<User> users = new ArrayList<>();
         users.add(new User("Timmie","jegErSuperSej"));
