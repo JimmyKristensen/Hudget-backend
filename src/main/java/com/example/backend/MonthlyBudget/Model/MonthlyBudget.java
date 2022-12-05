@@ -17,14 +17,14 @@ public class MonthlyBudget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long monthly_Id;
-    private LocalDate date;
+    private String date;
     private double monthlyMoney;
 
     //We call one monthlyBudget to many DailyBudget
     @OneToMany
     private Set<DailyBudget> dailyBudgets;
 
-    public MonthlyBudget(double monthlyMoney, Set<DailyBudget> dailyBudgets, LocalDate date) {
+    public MonthlyBudget(double monthlyMoney, Set<DailyBudget> dailyBudgets, String date) {
         this.monthlyMoney = monthlyMoney;
         this.date = date;
         this.dailyBudgets = dailyBudgets;

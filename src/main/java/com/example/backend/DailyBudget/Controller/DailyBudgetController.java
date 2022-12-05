@@ -2,6 +2,7 @@ package com.example.backend.DailyBudget.Controller;
 
 import com.example.backend.DailyBudget.Model.DailyBudget;
 import com.example.backend.DailyBudget.Service.DailyBudgetService;
+import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,8 +35,8 @@ public class DailyBudgetController {
 
     @PostMapping
     public ResponseEntity<Set<DailyBudget>> create(@RequestBody DailyBudget dailyBudget) {
-        Set<DailyBudget> item = service.create();
-        return ResponseEntity.ok().body(item);
+       Set<DailyBudget> item ;//= service.create();
+        return null; //ResponseEntity.ok().body(item);
     }
 
     @PutMapping("/{id}")
