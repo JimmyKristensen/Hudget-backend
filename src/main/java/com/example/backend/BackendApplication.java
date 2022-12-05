@@ -57,7 +57,7 @@ public class BackendApplication {
         }
 
         List<MonthlyBudget> monthlyBudgetsList = new ArrayList<>();
-        monthlyBudgetsList.add(new MonthlyBudget(2500, now.toString()));
+       // monthlyBudgetsList.add(new MonthlyBudget(2500, now.toString()));
      //   monthlyBudget.saveAll(monthlyBudgetsList); //testkode -- alle kaldene til saveAll er udkommenteret.
 
         final List<User> users = new ArrayList<>();
