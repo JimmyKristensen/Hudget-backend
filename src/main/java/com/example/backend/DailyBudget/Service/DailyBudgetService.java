@@ -1,16 +1,13 @@
 package com.example.backend.DailyBudget.Service;
 
-import com.example.backend.AdditionalExpenses.Model.AdditionalExpenses;
 import com.example.backend.AdditionalExpenses.Service.ExpensesService;
 import com.example.backend.DailyBudget.Model.DailyBudget;
 import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 
 @Service
@@ -41,6 +38,26 @@ public class DailyBudgetService {
         setDays = new HashSet<>();
         LocalDate today = LocalDate.now();
 
+        //Days left in the month
+        int daysBetween = daysLeftInMonth();
+
+        //Monthly money split for each day
+        float moneySplit = returnDailyValue(budget);
+
+        //Make enteties depending on how many days
+        for (int i = 0; i < daysBetween+1; i++) {
+            DailyBudget newDailyBudget = new DailyBudget(moneySplit, today, expService.returnDailySet());
+            setDays.add(newDailyBudget);
+            today = today.plusDays(1);
+            days.add(repository.save(newDailyBudget));
+        }
+        return setDays;
+    }
+
+    public Set<DailyBudget> createWithDatesFromMonthly(MonthlyBudget budget){
+        days = new HashSet<>();
+        setDays = new HashSet<>();
+        LocalDate today = LocalDate.now();
 
         //Days left in the month
         int daysBetween = daysLeftInMonth();
@@ -49,6 +66,7 @@ public class DailyBudgetService {
         float moneySplit = returnDailyValue(budget);
 
         //Make enteties depending on how many days
+            today = LocalDate.parse(budget.getDate());
         for (int i = 0; i < daysBetween+1; i++) {
             DailyBudget newDailyBudget = new DailyBudget(moneySplit, today, expService.returnDailySet());
             setDays.add(newDailyBudget);
