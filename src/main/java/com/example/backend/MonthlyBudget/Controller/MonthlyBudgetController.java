@@ -18,7 +18,6 @@ public class MonthlyBudgetController {
         this.service = service;
     }
 
-
     @GetMapping
     public Iterable<MonthlyBudget> callApi() {
         return service.findAll();
@@ -30,6 +29,7 @@ public class MonthlyBudgetController {
                 .orElseThrow(() -> new RuntimeException("Monthly Budget not found".formatted(id))));
         return ResponseEntity.ok().body(monthlyBudget.get());
     }
+
     @PostMapping()
     public ResponseEntity<MonthlyBudget> create(@RequestBody MonthlyBudget monthlyBudget) {
         /*service.createNewDailyBudgets(monthlyBudget.getDailyBudgets());
@@ -44,15 +44,30 @@ public class MonthlyBudgetController {
     public ResponseEntity<MonthlyBudget> put(@PathVariable("id") Long id, @RequestBody MonthlyBudget monthlyBudget) {
         return ResponseEntity.ok().body(service.update(id, monthlyBudget));
     }
+
     @PatchMapping("/{id}")
     public ResponseEntity<MonthlyBudget> patch(@PathVariable("id") Long id, @RequestBody MonthlyBudget monthlyBudget) {
         return ResponseEntity.ok().body(service.update(id, monthlyBudget));
     }
+
+    @PatchMapping("/money/{id}")
+    public ResponseEntity<MonthlyBudget> patchForMoney(@PathVariable("id") Long id, @RequestBody MonthlyBudget monthlyBudget) {
+        return ResponseEntity.ok().body(service.updateForMoney(id, monthlyBudget));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<MonthlyBudget> delete(@PathVariable("id") Long id) {
         service.find(id).orElseThrow(() -> new RuntimeException("Monthly Budget not found for deletion".formatted(id)));
         MonthlyBudget monthlyBudget = service.delete(id);
         return ResponseEntity.ok().body(monthlyBudget);
+    }
+    @DeleteMapping("/all")
+    public ResponseEntity<String> deleteAll() {
+        Iterable<MonthlyBudget> allMonBud = service.findAll();
+        for (MonthlyBudget monbud : allMonBud) {
+            service.delete(monbud.getMonthly_Id());
+        }
+        return ResponseEntity.ok().body("You hit deletion on all monthlybudgets, dawg.");
     }
 
 
