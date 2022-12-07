@@ -1,8 +1,6 @@
 package com.example.backend.Meal.Model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,4 +19,8 @@ public class Meal {
     private String name;
     private float percentageOfBudget;
 
+    public Meal(String name, float percentageOfBudget){
+        this.name = name;
+        this.percentageOfBudget = percentageOfBudget;
+    }
 }
