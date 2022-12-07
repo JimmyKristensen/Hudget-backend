@@ -50,6 +50,7 @@ public class MonthlybudgetService {
         if(repository.existsById(id)){ //tjek om MontlhyBudget eksisterer
           Optional<MonthlyBudget> monBuOld = repository.findById(id); //finder  den
           monBuActual = monBuOld.get(); //ændreer den fra optional til rigtig.
+            dailyService.updateMonthlyDailies(monthlyBudget);
         } else {
             System.out.println("Month not found in DB, sout from updateForMoney in MonthlyBudgetService. \n" +
                     "Returning unmodified monthlybudget. Monthlybudget ID: " + id);
