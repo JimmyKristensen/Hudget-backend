@@ -1,7 +1,5 @@
 package com.example.backend.User.Controller;
 
-
-import com.example.backend.DailyBudget.Model.DailyBudget;
 import com.example.backend.User.Model.User;
 import com.example.backend.User.Service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -25,13 +23,13 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> find(@PathVariable("id") Long id){
         Optional<User> user = Optional.of(service.find(id)
-                .orElseThrow(() -> new RuntimeException("Reservation not found.".formatted(id))));
+                .orElseThrow(() -> new RuntimeException("Reservation not found.")));
         return ResponseEntity.ok().body(user.get());
     }
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
-        User item = service.create(user);
-        return ResponseEntity.ok().body(item);
+        service.create(user);
+        return ResponseEntity.ok().body(user);
     }
 
 
