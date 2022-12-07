@@ -4,6 +4,7 @@ import com.example.backend.AdditionalExpenses.Model.AdditionalExpenses;
 import com.example.backend.AdditionalExpenses.Repository.ExpensesRepository;
 import com.example.backend.DailyBudget.Model.DailyBudget;
 import com.example.backend.DailyBudget.Repository.DailyBudgetRepository;
+import com.example.backend.Meal.Repository.MealRepository;
 import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import com.example.backend.MonthlyBudget.Repository.MonthlyBudgetRepository;
 import com.example.backend.User.Model.User;
@@ -28,7 +29,8 @@ public class BackendApplication {
     public CommandLineRunner importData(MonthlyBudgetRepository monthlyBudget,
                                         DailyBudgetRepository dailyBudget,
                                         UserRepository login,
-                                        ExpensesRepository expenses
+                                        ExpensesRepository expenses,
+                                        MealRepository meals
     )
     { return (args) ->{
 
