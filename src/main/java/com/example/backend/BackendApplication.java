@@ -65,7 +65,5 @@ public class BackendApplication {
         users.add(new User("Hans","kodeord13"));
         login.saveAll(users);
         System.out.println("CommandLineRunner has completed setup -- Hudget ready to run.");
-        System.out.println("Jeg er en test breanch!!!!! 0612 2022.");
-
     };}
 }
