@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -40,7 +39,7 @@ public class MonthlyBudget {
                 +". \nEnd of this Monthly object. \n";
     }
     public boolean isDateNull(){ //bruges til at se om et MonthlyBudget-obj har fået en Date med, eller ej
-        return this.date == null;
-    }
+        return this.date == null; //returner TRUE hvis der ingen Date er
+    } //og FALSE hvis der ER en Date.
 
 }
