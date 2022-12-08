@@ -29,6 +29,12 @@ public class MonthlyBudgetController {
         return ResponseEntity.ok().body(monthlyBudget.get());
     }
 
+    @GetMapping("/date/{date}")
+    public ResponseEntity<MonthlyBudget> findByDate(@PathVariable("date") String date) {
+        MonthlyBudget monthlyBudget = service.findByDate(date);
+        return ResponseEntity.ok().body(monthlyBudget);
+    }
+
     @PostMapping()
     public ResponseEntity<MonthlyBudget> create(@RequestBody MonthlyBudget monthlyBudget) {
         /*service.createNewDailyBudgets(monthlyBudget.getDailyBudgets());
