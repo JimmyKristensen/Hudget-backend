@@ -4,7 +4,7 @@ package com.example.backend.MonthlyBudget.Service;
 import com.example.backend.DailyBudget.Model.DailyBudget;
 import com.example.backend.DailyBudget.Service.DailyBudgetService;
 import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
-import org.springframework.data.repository.CrudRepository;
+import com.example.backend.MonthlyBudget.Repository.MonthlyBudgetRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,18 +14,26 @@ import java.util.Set;
 
 @Service
 public class MonthlybudgetService {
-    private final CrudRepository<MonthlyBudget, Long> repository;
+    private final MonthlyBudgetRepository repository;
     private final DailyBudgetService dailyService;
 
-    public MonthlybudgetService(CrudRepository<MonthlyBudget,Long> repository, DailyBudgetService dailyService) {
+    public MonthlybudgetService(MonthlyBudgetRepository repository, DailyBudgetService dailyService) {
         this.repository = repository;
         this.dailyService = dailyService;}
 
-    public Iterable<MonthlyBudget> findAll(){return repository.findAll();}
+    public Iterable<MonthlyBudget> findAll(){
+        return repository.findAll();
+    }
 
     public Optional<MonthlyBudget> find(Long id){
         return repository.findById(id);
     }
+
+    public MonthlyBudget findByDate(String date){
+        return repository.findByDate(date);
+    }
+
+
 
     public MonthlyBudget create(MonthlyBudget monthlyBudget) {
         if (monthlyBudget.isDateNull()) {

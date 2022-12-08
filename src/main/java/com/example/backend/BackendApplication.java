@@ -44,21 +44,21 @@ public class BackendApplication {
         final List<AdditionalExpenses> expensesList = new ArrayList<>();
         expensesList.add(new AdditionalExpenses());
         expensesList.add(new AdditionalExpenses());
-     //   expenses.saveAll(expensesList);
+        expenses.saveAll(expensesList);
 
         final List<DailyBudget> dailybudgets = new ArrayList<>();
         dailybudgets.add(new DailyBudget(266, now,additionalExpensesSet));
         dailybudgets.add(new DailyBudget(223, now,additionalExpensesSet));
         dailybudgets.add(new DailyBudget(245, now,additionalExpensesSet));
 
-   //     dailyBudget.saveAll(dailybudgets);
+        dailyBudget.saveAll(dailybudgets);
         for (DailyBudget bd : dailybudgets) {
             dailySet.add(bd);
         }
 
         List<MonthlyBudget> monthlyBudgetsList = new ArrayList<>();
-       // monthlyBudgetsList.add(new MonthlyBudget(2500, now.toString()));
-     //   monthlyBudget.saveAll(monthlyBudgetsList); //testkode -- alle kaldene til saveAll er udkommenteret.
+        monthlyBudgetsList.add(new MonthlyBudget(2500, now.toString()));
+        monthlyBudget.saveAll(monthlyBudgetsList); //testkode -- alle kaldene til saveAll er udkommenteret.
 
         final List<User> users = new ArrayList<>();
         users.add(new User("Timmie","jegErSuperSej"));
