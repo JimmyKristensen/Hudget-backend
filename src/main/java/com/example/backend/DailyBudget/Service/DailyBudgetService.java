@@ -40,16 +40,17 @@ public class DailyBudgetService {
 
         //Days left in the month
         int daysBetween = daysLeftInMonth();
+        System.out.println(daysBetween);
 
         //Monthly money split for each day
         float moneySplit = returnDailyValue(budget);
 
         //Make enteties depending on how many days
-        for (int i = 0; i < daysBetween+1; i++) {
+        for (int i = -1; i < daysBetween; i++) {
             DailyBudget newDailyBudget = new DailyBudget(moneySplit, today, expService.returnDailySet());
             setDays.add(newDailyBudget);
             today = today.plusDays(1);
-            days.add(repository.save(newDailyBudget));
+            setDays.add(repository.save(newDailyBudget));
         }
         return setDays;
     }
@@ -117,17 +118,30 @@ public class DailyBudgetService {
         //We convert the last part to a Integer
         int daysStart = Integer.parseInt(currentDay[2]);
         int daysEnd = Integer.parseInt(lastDay[2]);
-        return daysEnd-daysStart;
+
+        return (daysEnd-daysStart);
     }
 
-    public void updateMonthlyDailies(MonthlyBudget monthly){
+    //Update dailyBudget.money from the new updated MonthlyBudget.money
+    public Set<DailyBudget> updateMonthlyDailies(MonthlyBudget monthly, MonthlyBudget oldData){
 
-        float dailyBudget = (float) monthly.getMonthlyMoney()/monthly.getDailyBudgets().size();
-        for(DailyBudget db : monthly.getDailyBudgets()){
+        Set<DailyBudget> newDailies = oldData.getDailyBudgets();
+
+        //POSSIBLE ERROR: changing money after a day or two since the programs old version has
+        //techically more days than the newer one
+        if(newDailies.size() > 1){
+        float dailyBudget = (float) monthly.getMonthlyMoney()/newDailies.size();
+        for(DailyBudget db : newDailies){
             db.setMoney(dailyBudget);
+            newDailies.add(db);
         repository.save(db);
-    }
+
+    }} else{
+            System.out.println("Funny error Code in the updateDailyMoney");
+            }
+        return newDailies;
+        }
 
 }
 
-}
+
