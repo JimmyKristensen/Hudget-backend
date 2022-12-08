@@ -34,5 +34,11 @@ public class UserController {
         return ResponseEntity.ok().body(item);
     }
 
+    @PostMapping("/userChecker")
+    public ResponseEntity<User> session(@RequestBody User user){
+        User userToReturn = service.session(user.getName(), user.getPassword());
+        return ResponseEntity.ok().body(userToReturn);
+    }
+
 
 }
