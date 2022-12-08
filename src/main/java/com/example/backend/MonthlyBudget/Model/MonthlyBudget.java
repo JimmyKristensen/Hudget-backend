@@ -1,6 +1,8 @@
 package com.example.backend.MonthlyBudget.Model;
 
 import com.example.backend.DailyBudget.Model.DailyBudget;
+import com.example.backend.Meal.Model.Meal;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,9 +20,7 @@ public class MonthlyBudget {
     private long monthly_Id;
     private String date;
     private double monthlyMoney;
-
-    //We call one monthlyBudget to many DailyBudget
-    @OneToMany
+    @OneToMany //We call one monthlyBudget to many DailyBudget
     private Set<DailyBudget> dailyBudgets;
 
     //this constructor is deprecated -- dailybdugets are automaticlaly constructed now
@@ -34,10 +34,12 @@ public class MonthlyBudget {
         return "\nThis is MonthlyBudget toString. Status: \n" +
                 "MonthlyBudget ID: " + this.monthly_Id
                 +", AND Monthly date: " + this.date
-                +", AND Monthly money: " + this.monthlyMoney
-                +", \nAND set of Daily Budgets: " + this.dailyBudgets
+                +", \nAND Monthly money: " + this.monthlyMoney
+                +", AND set of Daily Budgets: " + this.dailyBudgets
                 +". \nEnd of this Monthly object. \n";
     }
+
+    @JsonIgnore //0812 2022 json should NOT bring this value via REST
     public boolean isDateNull(){ //bruges til at se om et MonthlyBudget-obj har fået en Date med, eller ej
         return this.date == null; //returner TRUE hvis der ingen Date er
     } //og FALSE hvis der ER en Date.
