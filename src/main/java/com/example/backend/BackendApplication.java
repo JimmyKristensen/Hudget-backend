@@ -4,6 +4,7 @@ import com.example.backend.AdditionalExpenses.Model.AdditionalExpenses;
 import com.example.backend.AdditionalExpenses.Repository.ExpensesRepository;
 import com.example.backend.DailyBudget.Model.DailyBudget;
 import com.example.backend.DailyBudget.Repository.DailyBudgetRepository;
+import com.example.backend.Meal.Model.Meal;
 import com.example.backend.Meal.Repository.MealRepository;
 import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import com.example.backend.MonthlyBudget.Repository.MonthlyBudgetRepository;
@@ -38,6 +39,7 @@ public class BackendApplication {
         Set<DailyBudget> dailySet = new HashSet<DailyBudget>();
         Set<DailyBudget> dailySetEmpty = new HashSet<DailyBudget>();
         Set<AdditionalExpenses> additionalExpensesSet = new HashSet<>();
+        Set<Meal> mealSet = new HashSet<>();
         LocalDate localDate = LocalDate.now();
 
         LocalDate now = LocalDate.now(); //tilføjet denne så vi kan give Budget-construc "now" istedet for "LocalDate.now()";
@@ -49,9 +51,9 @@ public class BackendApplication {
      //   expenses.saveAll(expensesList);
 
         final List<DailyBudget> dailybudgets = new ArrayList<>();
-        dailybudgets.add(new DailyBudget(266, now,additionalExpensesSet));
-        dailybudgets.add(new DailyBudget(223, now,additionalExpensesSet));
-        dailybudgets.add(new DailyBudget(245, now,additionalExpensesSet));
+        dailybudgets.add(new DailyBudget(266, now,additionalExpensesSet, mealSet));
+        dailybudgets.add(new DailyBudget(4626, now,additionalExpensesSet, mealSet));
+        dailybudgets.add(new DailyBudget(77, now,additionalExpensesSet, mealSet));
 
    //     dailyBudget.saveAll(dailybudgets);
         for (DailyBudget bd : dailybudgets) {
