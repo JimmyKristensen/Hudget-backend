@@ -77,6 +77,9 @@ public class DailyBudgetService {
     }
 
     public DailyBudget update(Long id, DailyBudget dailyBudget){
+
+
+
         return repository.save(dailyBudget);
     }
 
@@ -99,6 +102,8 @@ public class DailyBudgetService {
         return value/daysBetween;
     }
 
+
+
     public int daysLeftInMonth(){
 
         //We find todays date, and the end of the months date
@@ -114,5 +119,15 @@ public class DailyBudgetService {
         int daysEnd = Integer.parseInt(lastDay[2]);
         return daysEnd-daysStart;
     }
+
+    public void updateMonthlyDailies(MonthlyBudget monthly){
+
+        float dailyBudget = (float) monthly.getMonthlyMoney()/monthly.getDailyBudgets().size();
+        for(DailyBudget db : monthly.getDailyBudgets()){
+            db.setMoney(dailyBudget);
+        repository.save(db);
+    }
+
+}
 
 }
