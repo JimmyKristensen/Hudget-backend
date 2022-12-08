@@ -36,14 +36,13 @@ public class MonthlybudgetService {
 
 
     public MonthlyBudget create(MonthlyBudget monthlyBudget) {
-        if (monthlyBudget.isDateNull()) {
             LocalDate current = LocalDate.now();
             String getYear = Integer.toString(current.getYear()) + "-" + Integer.toString(current.getMonthValue());
             monthlyBudget.setDate(getYear);
-        }
+
          Set<DailyBudget> listDaily;
-        if (monthlyBudget.isDateNull()) listDaily = dailyService.create(monthlyBudget);
-        else  listDaily = dailyService.createWithDatesFromMonthly(monthlyBudget);
+        listDaily = dailyService.create(monthlyBudget);
+
         Set<DailyBudget> target = new HashSet<>(listDaily);
         monthlyBudget.setDailyBudgets(target);
         return repository.save(monthlyBudget);
@@ -58,7 +57,10 @@ public class MonthlybudgetService {
         if(repository.existsById(id)){ //tjek om MontlhyBudget eksisterer
           Optional<MonthlyBudget> monBuOld = repository.findById(id); //finder  den
           monBuActual = monBuOld.get(); //ændreer den fra optional til rigtig.
-            dailyService.updateMonthlyDailies(monthlyBudget);
+
+            //We want to update all the dailies money that was assosiated with this monthlyBudget
+
+            dailyService.updateMonthlyDailies(monthlyBudget, monBuActual);
         } else {
             System.out.println("Month not found in DB, sout from updateForMoney in MonthlyBudgetService. \n" +
                     "Returning unmodified monthlybudget. Monthlybudget ID: " + id);
