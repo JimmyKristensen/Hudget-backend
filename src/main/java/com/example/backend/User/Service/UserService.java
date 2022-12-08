@@ -6,6 +6,7 @@ import com.example.backend.User.Model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
@@ -22,6 +23,16 @@ public class UserService {
         return repository.findById(id);
     }
 
-    public User create(User user) {return repository.save(user);
+    public User create(User user) {return repository.save(user);}
+
+    public User session(String username, String password){
+        Iterable<User> listToSearchIn = findAll();
+        for (User user : listToSearchIn){
+            if (user.getName().equals(username) && user.getPassword().equals(password)){
+                return user;
+            }
+        }
+
+        return null;
     }
 }
