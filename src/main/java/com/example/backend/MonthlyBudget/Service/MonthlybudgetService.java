@@ -29,11 +29,9 @@ public class MonthlybudgetService {
         return repository.findById(id);
     }
 
-    public MonthlyBudget findByDate(String date){
-        return repository.findByDate(date);
+    public MonthlyBudget findByDate(String date, long user_Id){
+        return repository.findByDate(date, user_Id);
     }
-
-
 
     public MonthlyBudget create(MonthlyBudget monthlyBudget) {
             LocalDate current = LocalDate.now();
@@ -74,7 +72,4 @@ public class MonthlybudgetService {
         repository.deleteById(id);
         return null;
     }
-
-
-
 }

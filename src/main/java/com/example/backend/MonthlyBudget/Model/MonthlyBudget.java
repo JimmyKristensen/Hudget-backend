@@ -18,15 +18,17 @@ public class MonthlyBudget {
     private long monthly_Id;
     private String date;
     private double monthlyMoney;
+    private long user_Id;
 
     //We call one monthlyBudget to many DailyBudget
     @OneToMany
     private Set<DailyBudget> dailyBudgets;
 
     //this constructor is deprecated -- dailybdugets are automaticlaly constructed now
-    public MonthlyBudget(double monthlyMoney, String date) {
+    public MonthlyBudget(double monthlyMoney, String date, long user_Id) {
         this.monthlyMoney = monthlyMoney;
         this.date = date;
+        this.user_Id = user_Id;
     }
 
     @Override //2811 2022 tilføjet toString override for at debugge
