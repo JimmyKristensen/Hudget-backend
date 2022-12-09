@@ -1,7 +1,5 @@
 package com.example.backend.User.Model;
 
-
-import ch.qos.logback.classic.db.names.TableName;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +18,6 @@ public class User {
 
     private String name;
     private String password;
-
 
     public User(String name, String password) {
         this.name = name;

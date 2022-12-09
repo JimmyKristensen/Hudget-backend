@@ -2,6 +2,7 @@ package com.example.backend.DailyBudget.Service;
 
 import com.example.backend.AdditionalExpenses.Service.ExpensesService;
 import com.example.backend.DailyBudget.Model.DailyBudget;
+import com.example.backend.Meal.Service.MealService;
 import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -13,18 +14,20 @@ import java.util.*;
 @Service
 public class DailyBudgetService {
 
-      private Set<DailyBudget> days;
-      private Set<DailyBudget> setDays;
-      private ExpensesService expService;
-
+      private  Set<DailyBudget> setDays;
+      private  ExpensesService expService;
+      private  MealService mealService;
 
     //class field
     private final CrudRepository<DailyBudget, Long> repository;
 
     //constructor
-    public DailyBudgetService(CrudRepository<DailyBudget, Long> repository, ExpensesService expService) {
+    public DailyBudgetService(CrudRepository<DailyBudget, Long> repository,
+                              ExpensesService expService,
+                              MealService mealService) {
         this.repository = repository;
         this.expService = expService;
+        this.mealService = mealService;
     }
 
     public Iterable<DailyBudget> findAll(){return repository.findAll();}
@@ -34,27 +37,32 @@ public class DailyBudgetService {
     }
 
     public Set<DailyBudget> create(MonthlyBudget budget){
-        days = new HashSet<>();
         setDays = new HashSet<>();
         LocalDate today = LocalDate.now();
 
         //Days left in the month
         int daysBetween = daysLeftInMonth();
-        System.out.println(daysBetween);
 
         //Monthly money split for each day
         float moneySplit = returnDailyValue(budget);
 
         //Make enteties depending on how many days
         for (int i = -1; i < daysBetween; i++) {
-            DailyBudget newDailyBudget = new DailyBudget(moneySplit, today, expService.returnDailySet());
+            DailyBudget newDailyBudget = new DailyBudget(
+                    moneySplit,
+                    today,
+                    expService.returnDailySet(),
+                    mealService.defaultMealInitialiser()
+            );
             setDays.add(newDailyBudget);
             today = today.plusDays(1);
             setDays.add(repository.save(newDailyBudget));
         }
+
         return setDays;
     }
-
+/* //0812 2022 jeg har udkommenteret createWithDatesFromMonthly, fordi vi ikke bruger den og jeg gider ikke opdatere den
+//endnu.
     public Set<DailyBudget> createWithDatesFromMonthly(MonthlyBudget budget){
         days = new HashSet<>();
         setDays = new HashSet<>();
@@ -76,16 +84,12 @@ public class DailyBudgetService {
         }
         return setDays;
     }
-
+*/
     public DailyBudget update(Long id, DailyBudget dailyBudget){
-
-
-
         return repository.save(dailyBudget);
     }
 
     public float returnDailyValue(MonthlyBudget budget){
-
         //We find todays date, and the end of the months date
         LocalDate today = LocalDate.now();
         YearMonth month = YearMonth.from(today);

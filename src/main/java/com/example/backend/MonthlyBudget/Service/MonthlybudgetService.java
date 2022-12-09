@@ -34,9 +34,12 @@ public class MonthlybudgetService {
     }
 
     public MonthlyBudget create(MonthlyBudget monthlyBudget) {
-            LocalDate current = LocalDate.now();
-            String getYear = Integer.toString(current.getYear()) + "-" + Integer.toString(current.getMonthValue());
-            monthlyBudget.setDate(getYear);
+
+        if (monthlyBudget.isDateNull()) {
+                LocalDate current = LocalDate.now();
+                String getYear = Integer.toString(current.getYear()) + "-" + Integer.toString(current.getMonthValue());
+                monthlyBudget.setDate(getYear);
+            }
 
          Set<DailyBudget> listDaily;
         listDaily = dailyService.create(monthlyBudget);
@@ -57,7 +60,6 @@ public class MonthlybudgetService {
           monBuActual = monBuOld.get(); //ændreer den fra optional til rigtig.
 
             //We want to update all the dailies money that was assosiated with this monthlyBudget
-
             dailyService.updateMonthlyDailies(monthlyBudget, monBuActual);
         } else {
             System.out.println("Month not found in DB, sout from updateForMoney in MonthlyBudgetService. \n" +
