@@ -1,6 +1,7 @@
 package com.example.backend.MonthlyBudget.Model;
 
 import com.example.backend.DailyBudget.Model.DailyBudget;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,7 +22,6 @@ public class MonthlyBudget {
     private long user_Id;
 
     //We call one monthlyBudget to many DailyBudget
-    @OneToMany
     @OneToMany //We call one monthlyBudget to many DailyBudget
     private Set<DailyBudget> dailyBudgets;
 
