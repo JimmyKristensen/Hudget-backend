@@ -1,6 +1,7 @@
 package com.example.backend.MonthlyBudget.Model;
 
 import com.example.backend.DailyBudget.Model.DailyBudget;
+import com.example.backend.User.Model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,17 +20,20 @@ public class MonthlyBudget {
     private long monthly_Id;
     private String date;
     private double monthlyMoney;
-    private long user_Id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     //We call one monthlyBudget to many DailyBudget
     @OneToMany //We call one monthlyBudget to many DailyBudget
     private Set<DailyBudget> dailyBudgets;
 
     //this constructor is deprecated -- dailybdugets are automaticlaly constructed now
-    public MonthlyBudget(double monthlyMoney, String date, long user_Id) {
+    public MonthlyBudget(double monthlyMoney, String date, User user) {
         this.monthlyMoney = monthlyMoney;
         this.date = date;
-        this.user_Id = user_Id;
+        this.user = user;
     }
 
     @Override //2811 2022 tilføjet toString override for at debugge

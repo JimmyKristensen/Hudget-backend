@@ -4,11 +4,9 @@ import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
-import java.util.Optional;
-
 
 public interface MonthlyBudgetRepository extends CrudRepository<MonthlyBudget, Long> {
-    @Query(value = "SELECT * FROM MONTHLY_BUDGET  WHERE CAST(DATE = DATE AS VARCHAR) AND user_Id = user_Id", nativeQuery = true)
+    @Query(value = "SELECT * FROM MONTHLY_BUDGET WHERE CAST(DATE = ?1 AS VARCHAR) AND USER_ID = ?2", nativeQuery = true)
     MonthlyBudget findByDate(String date, long user_Id);
 }
+        //SELECT * FROM MONTHLY_BUDGET WHERE USER_ID = user_Id

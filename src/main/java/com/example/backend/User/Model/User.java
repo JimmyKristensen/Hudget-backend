@@ -1,10 +1,13 @@
 package com.example.backend.User.Model;
 
+import com.example.backend.MonthlyBudget.Model.MonthlyBudget;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,7 +20,12 @@ public class User {
     private long user_id;
 
     private String name;
+
     private String password;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "user")
+    private List<MonthlyBudget> monthlyBudgets;
 
     public User(String name, String password) {
         this.name = name;

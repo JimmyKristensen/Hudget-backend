@@ -60,14 +60,20 @@ public class BackendApplication {
             dailySet.add(bd);
         }
 
-        List<MonthlyBudget> monthlyBudgetsList = new ArrayList<>();
-        monthlyBudgetsList.add(new MonthlyBudget(2500, now.toString(),1));
-        monthlyBudget.saveAll(monthlyBudgetsList); //testkode -- alle kaldene til saveAll er udkommenteret.
-
         final List<User> users = new ArrayList<>();
         users.add(new User("Timmie","jegErSuperSej"));
         users.add(new User("Hans","kodeord13"));
+        users.add(new User("Nicolas","kodeord13"));
         login.saveAll(users);
         System.out.println("CommandLineRunner has completed setup -- Hudget ready to run.");
+
+
+        List<MonthlyBudget> monthlyBudgetsList = new ArrayList<>();
+        monthlyBudgetsList.add(new MonthlyBudget(2500, Integer.toString(now.getYear()) + "-" + Integer.toString(now.getMonthValue()),users.get(1)));
+        monthlyBudgetsList.add(new MonthlyBudget(4000, Integer.toString(now.getYear()) + "-" + Integer.toString(now.getMonthValue()),users.get(0)));
+        monthlyBudgetsList.add(new MonthlyBudget(4000, Integer.toString(now.getYear()) + "-" + Integer.toString(now.getMonthValue()),users.get(2)));
+
+        monthlyBudget.saveAll(monthlyBudgetsList); //testkode -- alle kaldene til saveAll er udkommenteret.
+
     };}
 }
