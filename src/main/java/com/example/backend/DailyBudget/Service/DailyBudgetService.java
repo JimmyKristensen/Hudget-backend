@@ -59,32 +59,11 @@ public class DailyBudgetService {
             setDays.add(repository.save(newDailyBudget));
         }
 
+
+
         return setDays;
     }
-/* //0812 2022 jeg har udkommenteret createWithDatesFromMonthly, fordi vi ikke bruger den og jeg gider ikke opdatere den
-//endnu.
-    public Set<DailyBudget> createWithDatesFromMonthly(MonthlyBudget budget){
-        days = new HashSet<>();
-        setDays = new HashSet<>();
-        LocalDate today = LocalDate.now();
 
-        //Days left in the month
-        int daysBetween = daysLeftInMonth();
-
-        //Monthly money split for each day
-        float moneySplit = returnDailyValue(budget);
-
-        //Make enteties depending on how many days
-            today = LocalDate.parse(budget.getDate());
-        for (int i = 0; i < daysBetween+1; i++) {
-            DailyBudget newDailyBudget = new DailyBudget(moneySplit, today, expService.returnDailySet());
-            setDays.add(newDailyBudget);
-            today = today.plusDays(1);
-            days.add(repository.save(newDailyBudget));
-        }
-        return setDays;
-    }
-*/
     public DailyBudget update(Long id, DailyBudget dailyBudget){
         return repository.save(dailyBudget);
     }

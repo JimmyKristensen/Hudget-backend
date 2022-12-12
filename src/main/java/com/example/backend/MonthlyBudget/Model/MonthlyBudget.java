@@ -27,7 +27,9 @@ public class MonthlyBudget {
 
     //We call one monthlyBudget to many DailyBudget
     @OneToMany //We call one monthlyBudget to many DailyBudget
+    @OrderBy("dailyBudget_Id asc")
     private Set<DailyBudget> dailyBudgets;
+
 
     //this constructor is deprecated -- dailybdugets are automaticlaly constructed now
     public MonthlyBudget(double monthlyMoney, String date, User user) {
