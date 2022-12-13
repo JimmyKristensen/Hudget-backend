@@ -13,6 +13,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
+
 public class MonthlybudgetService {
     private final MonthlyBudgetRepository repository;
     private final DailyBudgetService dailyService;
@@ -34,15 +35,20 @@ public class MonthlybudgetService {
     }
 
     public MonthlyBudget create(MonthlyBudget monthlyBudget) {
+        Set<DailyBudget> listDaily;
+        String getYear = null;
 
         if (monthlyBudget.isDateNull()) {
                 LocalDate current = LocalDate.now();
-                String getYear = Integer.toString(current.getYear()) + "-" + Integer.toString(current.getMonthValue());
+                getYear = Integer.toString(current.getYear()) + "-" + Integer.toString(current.getMonthValue());
                 monthlyBudget.setDate(getYear);
+                listDaily = dailyService.create(monthlyBudget, true);
             }
+        else{
+            listDaily = dailyService.create(monthlyBudget, false);
+        }
 
-         Set<DailyBudget> listDaily;
-        listDaily = dailyService.create(monthlyBudget);
+
 
         Set<DailyBudget> target = new HashSet<>(listDaily);
         monthlyBudget.setDailyBudgets(target);
