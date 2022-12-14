@@ -136,7 +136,7 @@ public class DailyBudgetService {
         Set<DailyBudget> newDailies = oldData.getDailyBudgets();
 
         //POSSIBLE ERROR: changing money after a day or two since the programs old version has
-        //techically more days than the newer one
+        //technically more days than the newer one
         if(newDailies.size() > 1){
         float dailyBudget = (float) monthly.getMonthlyMoney()/newDailies.size();
         for(DailyBudget db : newDailies){

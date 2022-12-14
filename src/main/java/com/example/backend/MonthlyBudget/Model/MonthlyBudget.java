@@ -31,13 +31,6 @@ public class MonthlyBudget {
     private Set<DailyBudget> dailyBudgets;
 
 
-    //this constructor is deprecated -- dailybdugets are automaticlaly constructed now
-    public MonthlyBudget(double monthlyMoney, String date, User user) {
-        this.monthlyMoney = monthlyMoney;
-        this.date = date;
-        this.user = user;
-    }
-
     @Override //2811 2022 tilføjet toString override for at debugge
     public String toString(){
         return "\nThis is MonthlyBudget toString. Status: \n" +

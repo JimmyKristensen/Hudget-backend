@@ -36,11 +36,11 @@ public class MonthlybudgetService {
 
     public MonthlyBudget create(MonthlyBudget monthlyBudget) {
         Set<DailyBudget> listDaily;
-        String getYear = null;
+        String getYear;
 
         if (monthlyBudget.isDateNull()) {
                 LocalDate current = LocalDate.now();
-                getYear = Integer.toString(current.getYear()) + "-" + Integer.toString(current.getMonthValue());
+                getYear = current.getYear() + "-" + current.getMonthValue();
                 monthlyBudget.setDate(getYear);
                 listDaily = dailyService.create(monthlyBudget, true);
             }
