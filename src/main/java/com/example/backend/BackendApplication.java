@@ -65,7 +65,7 @@ public class BackendApplication {
         users.add(new User("Hans","kodeord13"));
         users.add(new User("Nicolas","kodeord13"));
         login.saveAll(users);
-        System.out.println("CommandLineRunner has completed setup -- Hudget ready to run.");
+
 
 
         List<MonthlyBudget> monthlyBudgetsList = new ArrayList<>();
@@ -74,6 +74,6 @@ public class BackendApplication {
         monthlyBudgetsList.add(new MonthlyBudget(4000, Integer.toString(now.getYear()) + "-" + Integer.toString(now.getMonthValue()),users.get(2)));
 
         monthlyBudget.saveAll(monthlyBudgetsList); //testkode -- alle kaldene til saveAll er udkommenteret.
-
+        System.out.println("CommandLineRunner has completed setup -- Hudget ready to run.");
     };}
 }
