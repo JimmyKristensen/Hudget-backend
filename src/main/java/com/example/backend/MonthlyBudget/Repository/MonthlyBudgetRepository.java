@@ -9,4 +9,3 @@ public interface MonthlyBudgetRepository extends CrudRepository<MonthlyBudget, L
     @Query(value = "SELECT * FROM MONTHLY_BUDGET WHERE CAST(DATE = ?1 AS VARCHAR) AND USER_ID = ?2", nativeQuery = true)
     MonthlyBudget findByDate(String date, long user_Id);
 }
-        //SELECT * FROM MONTHLY_BUDGET WHERE USER_ID = user_Id

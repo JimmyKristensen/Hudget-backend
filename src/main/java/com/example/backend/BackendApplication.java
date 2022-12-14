@@ -25,7 +25,7 @@ public class BackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);
     }
-
+/*
     @Bean
     public CommandLineRunner importData(MonthlyBudgetRepository monthlyBudget,
                                         DailyBudgetRepository dailyBudget,
@@ -69,11 +69,11 @@ public class BackendApplication {
 
 
         List<MonthlyBudget> monthlyBudgetsList = new ArrayList<>();
-        monthlyBudgetsList.add(new MonthlyBudget(2500, Integer.toString(now.getYear()) + "-" + Integer.toString(now.getMonthValue()),users.get(1)));
-        monthlyBudgetsList.add(new MonthlyBudget(4000, Integer.toString(now.getYear()) + "-" + Integer.toString(now.getMonthValue()),users.get(0)));
-        monthlyBudgetsList.add(new MonthlyBudget(4000, Integer.toString(now.getYear()) + "-" + Integer.toString(now.getMonthValue()),users.get(2)));
+
 
         monthlyBudget.saveAll(monthlyBudgetsList); //testkode -- alle kaldene til saveAll er udkommenteret.
         System.out.println("CommandLineRunner has completed setup -- Hudget ready to run.");
     };}
+
+ */
 }

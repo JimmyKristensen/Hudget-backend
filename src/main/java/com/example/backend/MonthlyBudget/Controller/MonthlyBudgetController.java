@@ -37,10 +37,6 @@ public class MonthlyBudgetController {
 
     @PostMapping()
     public ResponseEntity<MonthlyBudget> create(@RequestBody MonthlyBudget monthlyBudget) {
-        /*service.createNewDailyBudgets(monthlyBudget.getDailyBudgets());
-        service.create(monthlyBudget);
-
-         */
         service.create(monthlyBudget);
         return ResponseEntity.ok().body(monthlyBudget);
     }
