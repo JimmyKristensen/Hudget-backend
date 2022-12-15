@@ -19,6 +19,7 @@ public class MonthlyBudgetController {
 
     @GetMapping
     public Iterable<MonthlyBudget> callApi() {
+        System.out.println(service.findAll());
         return service.findAll();
     }
 
