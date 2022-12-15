@@ -11,15 +11,24 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "dailyBudget")
 public class DailyBudget {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long dailyBudget_Id;
+
+    @Column(name = "money")
     private float money;
+
+    @Column(name = "date")
     private LocalDate date;
+
+    @Column(name = "additionalExpenses")
     @OneToMany
     private Set<AdditionalExpenses> additionalExpenses;
+
+    @Column(name = "meal")
     @OneToMany
     private Set<Meal> meal;
 

@@ -19,8 +19,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long user_id;
 
+    @Column(name = "userName")
     private String name;
 
+    @Column(name = "password")
     private String password;
 
     @JsonBackReference
