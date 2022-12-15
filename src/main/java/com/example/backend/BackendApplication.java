@@ -33,7 +33,8 @@ public class BackendApplication {
                                         ExpensesRepository expenses,
                                         MealRepository meals
     )
-    { return (args) ->{
+    { return (args) -> {
+        /*
 
         //Diffrent HashSet, to fulfill the oneToMany requirement asked in the entities
         Set<DailyBudget> dailySet = new HashSet<DailyBudget>();
@@ -67,7 +68,6 @@ public class BackendApplication {
         login.saveAll(users);
 
 
-
         List<MonthlyBudget> monthlyBudgetsList = new ArrayList<>();
 
 
@@ -76,4 +76,6 @@ public class BackendApplication {
     };}
 
 
-}
+         */
+
+    };}}
